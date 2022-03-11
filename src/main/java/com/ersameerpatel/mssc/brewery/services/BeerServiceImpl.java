@@ -1,6 +1,7 @@
 package com.ersameerpatel.mssc.brewery.services;
 
 import com.ersameerpatel.mssc.brewery.web.model.BeerDto;
+import com.ersameerpatel.mssc.brewery.web.model.BeerStyleEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class BeerServiceImpl implements BeerService{
         return BeerDto.builder()
                         .id(UUID.randomUUID())
                         .beerName("Brand-X")
-                        .beerStyle("Style-X")
+                        .beerStyle(BeerStyleEnum.LARGE)
                         .build();
     }
 }

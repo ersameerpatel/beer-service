@@ -4,10 +4,7 @@ import com.ersameerpatel.mssc.brewery.services.BeerService;
 import com.ersameerpatel.mssc.brewery.web.model.BeerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -15,15 +12,26 @@ import java.util.UUID;
 @RestController
 public class BeerController {
 
-    private final BeerService beerService;
+    //private final BeerService beerService;
 
-    public BeerController(BeerService beerService){
-        this.beerService = beerService;
+    public BeerController() {
     }
 
     @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId){
+    public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId){
+        //todo :: real implementation
+        return new ResponseEntity<>(BeerDto.builder().build(), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<BeerDto> saveNewBeer(@RequestBody BeerDto beerDto){
+        //todo :: real implementation
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{beerId}")
+    public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto){
+        //todo :: real implementation
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
