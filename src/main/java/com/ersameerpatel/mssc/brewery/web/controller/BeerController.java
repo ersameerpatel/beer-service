@@ -2,6 +2,8 @@ package com.ersameerpatel.mssc.brewery.web.controller;
 
 import com.ersameerpatel.mssc.brewery.services.BeerService;
 import com.ersameerpatel.mssc.brewery.web.model.BeerDto;
+import com.ersameerpatel.mssc.brewery.web.model.BeerStyleEnum;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,18 +22,37 @@ public class BeerController {
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId){
         //todo :: real implementation
-        return new ResponseEntity<>(BeerDto.builder().build(), HttpStatus.OK);
+        return new ResponseEntity<>(BeerDto.builder().id(beerId).beerName("MyBeer").beerStyle(BeerStyleEnum.LARGE).build(), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<BeerDto> saveNewBeer(@RequestBody BeerDto beerDto){
         //todo :: real implementation
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        System.out.println("called saveNewBeer");
+
+        HttpHeaders headers = new HttpHeaders();
+        //todo add hostname to url
+        headers.add("Location", "/api/v1/beer/" + UUID.randomUUID().toString());
+
+        return new ResponseEntity(headers, HttpStatus.CREATED);
+        //return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
     public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto){
         //todo :: real implementation
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        HttpHeaders headers = new HttpHeaders();
+        //todo add hostname to url
+        headers.add("Location", "/api/v1/beer/" + UUID.randomUUID().toString());
+
+        return new ResponseEntity(headers, HttpStatus.CREATED);
+        //return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{beerId}")
+    public ResponseEntity deleteBeerById(@PathVariable("beerId") UUID beerId){
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
