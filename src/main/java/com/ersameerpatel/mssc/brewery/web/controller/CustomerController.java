@@ -5,8 +5,10 @@ import com.ersameerpatel.mssc.brewery.web.model.CustomerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @RequestMapping(value = "/api/v1/customer")
@@ -26,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity createCustomer(@RequestBody CustomerDto customerDto){
+    public ResponseEntity createCustomer(@Validated  @RequestBody CustomerDto customerDto){
 
         CustomerDto newCustomer = customerService.saveNewCustomer();
 
@@ -38,7 +40,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDto customerDto){
+    public ResponseEntity updateCustomer(@NotNull @PathVariable("customerId") UUID customerId, @Validated @RequestBody CustomerDto customerDto){
 
         customerService.updateCustomer(customerId, customerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
