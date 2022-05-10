@@ -3,6 +3,7 @@ package com.ersameerpatel.mssc.brewery.web.controller;
 import com.ersameerpatel.mssc.brewery.services.BeerService;
 import com.ersameerpatel.mssc.brewery.web.model.BeerDto;
 import com.ersameerpatel.mssc.brewery.web.model.BeerStyleEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
@@ -32,7 +34,7 @@ public class BeerController {
     @PostMapping
     public ResponseEntity saveNewBeer(@Valid @RequestBody BeerDto beerDto){
         //todo :: real implementation
-        System.out.println("called saveNewBeer");
+        log.info("called saveNewBeer");
 
         HttpHeaders headers = new HttpHeaders();
         //todo add hostname to url

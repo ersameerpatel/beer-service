@@ -4,11 +4,13 @@ import com.ersameerpatel.mssc.brewery.domain.Beer;
 import com.ersameerpatel.mssc.brewery.repositories.BeerRepository;
 import com.ersameerpatel.mssc.brewery.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class BeerLoader implements CommandLineRunner {
@@ -32,7 +34,7 @@ public class BeerLoader implements CommandLineRunner {
                 .beerName("Mango Bobs")
                 .beerStyle(BeerStyleEnum.IPA.name())
                 .minOnHand(12)
-                .quantityToBrew(200)
+                .quantityOnHand(200)
                 .price(new BigDecimal("12.95"))
                 .upc(BEER_1_UPC)
                 .build();
@@ -41,7 +43,7 @@ public class BeerLoader implements CommandLineRunner {
                 .beerName("Galaxy Cat")
                 .beerStyle(BeerStyleEnum.PALE_ALE.name())
                 .minOnHand(12)
-                .quantityToBrew(200)
+                .quantityOnHand(200)
                 .price(new BigDecimal("12.95"))
                 .upc(BEER_2_UPC)
                 .build();
@@ -50,7 +52,7 @@ public class BeerLoader implements CommandLineRunner {
                 .beerName("Pinball Porter")
                 .beerStyle(BeerStyleEnum.PALE_ALE.name())
                 .minOnHand(12)
-                .quantityToBrew(200)
+                .quantityOnHand(200)
                 .price(new BigDecimal("12.95"))
                 .upc(BEER_3_UPC)
                 .build();
@@ -59,6 +61,6 @@ public class BeerLoader implements CommandLineRunner {
         beerRepository.save(b2);
         beerRepository.save(b3);
 
-        System.out.println("BeerLoder Loaded " + beerRepository.count() + " Beers");
+        log.info("BeerLoder Loaded " + beerRepository.count() + " Beers");
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class BeerDto {
     private UUID id;
 
     @Null
-    private Integer version;
+    private Long version;
 
     @Null
     private OffsetDateTime createdDate;
@@ -40,6 +41,8 @@ public class BeerDto {
     @NotNull
     @Positive
     private BigDecimal price;
+
+    private Integer minOnHand;
 
     private Integer quantityOnHand;
 }
