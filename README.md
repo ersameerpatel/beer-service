@@ -1,7 +1,13 @@
 [![CircleCI](https://circleci.com/gh/ersameerpatel/mssc-brewery/tree/main.svg?style=svg)](https://circleci.com/gh/ersameerpatel/mssc-brewery/tree/main)
 
-# mssc-brewery
-spring boot microservices project
+#Sprint Boot Microservices Project 
+## mssc-brewery
+spring boot microservices project - follow along project with John Thompson on Udemy 
 
+###General Details : 
+* Udemy Course Link : https://synechron.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/lecture/15030310
+* Original Git Repository : https://github.com/springframeworkguru/mssc-beer-service 
+
+###Technical Notes : 
 1. Jackson Examples : Refer this Git Repository : https://github.com/springframeworkguru/mssc-jackson-examples/tree/custom-deserializer
 2. 
