@@ -1,9 +1,13 @@
 package com.ersameerpatel.mssc.brewery.web.controller;
 
 import com.ersameerpatel.mssc.brewery.services.BeerService;
+import com.ersameerpatel.mssc.brewery.services.NotFoundException;
 import com.ersameerpatel.mssc.brewery.web.model.BeerDto;
 import com.ersameerpatel.mssc.brewery.web.model.BeerStyleEnum;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,54 +20,42 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@RequestMapping("/api/v1/beer")
+@RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/v1/beer")
 public class BeerController {
 
-    //private final BeerService beerService;
-
-    public BeerController() {
-    }
+    private final BeerService beerService;
 
     @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId){
-        //todo :: real implementation
-        return new ResponseEntity<>(BeerDto.builder().id(beerId).beerName("MyBeer").beerStyle(BeerStyleEnum.LARGE).build(), HttpStatus.OK);
+    public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId) {
+
+        //return new ResponseEntity<>(BeerDto.builder().id(beerId).beerName("MyBeer").beerStyle(BeerStyleEnum.LARGE).build(), HttpStatus.OK);
+        return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity saveNewBeer(@Valid @RequestBody BeerDto beerDto){
-        //todo :: real implementation
-        log.info("called saveNewBeer");
+    public ResponseEntity saveNewBeer(@Valid @RequestBody BeerDto beerDto) {
 
-        HttpHeaders headers = new HttpHeaders();
-        //todo add hostname to url
-        headers.add("Location", "/api/v1/beer/" + UUID.randomUUID().toString());
-
-        return new ResponseEntity(headers, HttpStatus.CREATED);
+        return new ResponseEntity(beerService.saveNewBeer(beerDto), HttpStatus.CREATED);
         //return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto){
-        //todo :: real implementation
+    public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto) {
 
-        HttpHeaders headers = new HttpHeaders();
-        //todo add hostname to url
-        headers.add("Location", "/api/v1/beer/" + UUID.randomUUID().toString());
-
-        return new ResponseEntity(headers, HttpStatus.CREATED);
+        return new ResponseEntity(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
         //return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{beerId}")
-    public ResponseEntity deleteBeerById(@PathVariable("beerId") UUID beerId){
+    public ResponseEntity deleteBeerById(@PathVariable("beerId") UUID beerId) {
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException exception){
+    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException exception) {
 
         List<String> errorList = new ArrayList<>(exception.getConstraintViolations().size());
 
@@ -71,6 +63,6 @@ public class BeerController {
             errorList.add(constraintViolation.getPropertyPath() + " : " + constraintViolation.getMessage());
         });
 
-       return  new ResponseEntity(errorList, HttpStatus.NO_CONTENT );
+        return new ResponseEntity(errorList, HttpStatus.NO_CONTENT);
     }
 }

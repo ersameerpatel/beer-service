@@ -9,5 +9,5 @@ spring boot microservices project - follow along project with John Thompson on U
 * Original Git Repository : https://github.com/springframeworkguru/mssc-beer-service 
 
 ###Technical Notes : 
-1. Jackson Examples : Refer this Git Repository : https://github.com/springframeworkguru/mssc-jackson-examples/tree/custom-deserializer
-2. 
+1. Jackson Examples : https://github.com/springframeworkguru/mssc-jackson-examples/tree/custom-deserializer
+2. Spring REST Docs Example : https://github.com/springframeworkguru/brewery-rest-docs/tree/restdocs-impl 
