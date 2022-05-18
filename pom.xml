@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ersameerpatel</groupId>
-	<artifactId>mssc.brewery</artifactId>
+	<artifactId>beer.service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mssc-brewery</name>
+	<name>beer-service</name>
 	<description>spring boot microservices project - brewery</description>
 
 	<properties>
